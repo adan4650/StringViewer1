@@ -5,6 +5,7 @@
     <TargetFramework>net9.0</TargetFramework>
     <UseWPF>true</UseWPF>
     <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
