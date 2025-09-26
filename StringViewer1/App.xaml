@@ -3,23 +3,49 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <!-- Global Font Settings -->
-        <Style TargetType="Window">
-            <Setter Property="FontFamily" Value="Segoe UI"/>
-            <Setter Property="FontSize" Value="14"/>
-        </Style>
-        
-        <!-- Global ScrollBar Styling -->
-        <Style TargetType="ScrollBar">
-            <Setter Property="Background" Value="#F0F0F0"/>
-            <Setter Property="BorderBrush" Value="#E0E0E0"/>
-            <Setter Property="Width" Value="12"/>
-        </Style>
-        
-        <!-- Global ScrollViewer Styling -->
-        <Style TargetType="ScrollViewer">
-            <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
-            <Setter Property="HorizontalScrollBarVisibility" Value="Auto"/>
-        </Style>
+        <ResourceDictionary>
+            
+            <!-- Global Font Settings -->
+            <Style TargetType="Window">
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Background" Value="#19183B"/>
+                <Setter Property="Foreground" Value="Black"/>
+            </Style>
+            
+            <!-- Global TextBox Styling -->
+            <Style TargetType="TextBox">
+                <Setter Property="Background" Value="#E7F2EF"/>
+                <Setter Property="BorderBrush" Value="White"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Foreground" Value="Black"/>
+            </Style>
+            
+            <!-- Global ListBox Styling for selected files box -->
+            <Style TargetType="ListBox">
+                <Setter Property="Background" Value="#708993"/>
+                <Setter Property="BorderBrush" Value="White"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Foreground" Value="Black"/>
+            </Style>
+            
+            <!-- Global TextBlock Styling -->
+            <Style TargetType="TextBlock">
+                <Setter Property="Foreground" Value="Black"/>
+            </Style>
+            
+            <!-- Global ScrollBar Styling -->
+            <Style TargetType="ScrollBar">
+                <Setter Property="Background" Value="#F0F0F0"/>
+                <Setter Property="BorderBrush" Value="#E0E0E0"/>
+                <Setter Property="Width" Value="12"/>
+            </Style>
+            
+            <!-- Global ScrollViewer Styling -->
+            <Style TargetType="ScrollViewer">
+                <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+                <Setter Property="HorizontalScrollBarVisibility" Value="Auto"/>
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

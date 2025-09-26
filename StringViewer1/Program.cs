@@ -12,6 +12,7 @@ using Ude; // NuGet package: Ude.NetStandard
 
 class Program
 {
+    // Change the method name to 'Main' and ensure only one entry point exists.
     static async Task<int> Main(string[] args)
     {
         string filePath = null;

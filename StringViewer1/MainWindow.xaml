@@ -4,25 +4,116 @@
         xmlns:local="clr-namespace:StringViewer1"
         Title="Large File Viewer" Height="800" Width="1000">
     <DockPanel>
-        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="6">
-            <Button Content="Open File" Click="OpenFile_Click" Margin="0,0,6,0"/>
-            <TextBlock x:Name="FileInfoText" VerticalAlignment="Center"/>
-        </StackPanel>
+        <!-- Replace the simple StackPanel with the new Grid interface -->
+        <Grid Height="336" DockPanel.Dock="Top" Margin="6">
+            <ScrollViewer Margin="12,152,26,83" Name="scrollViewer1"
+                          Background="Gray" 
+                          VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Auto">
+                <ScrollViewer.Template>
+                    <ControlTemplate TargetType="ScrollViewer">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="8"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ScrollContentPresenter />
+                        </Border>
+                    </ControlTemplate>
+                </ScrollViewer.Template>
+                <TextBlock Name="textBlock1"
+                           Foreground="White"
+                           FontFamily="Georgia" FontSize="12"
+                           TextWrapping="Wrap"
+                           Padding="5"
+                           Text="Selected files will appear here..." />
+            </ScrollViewer>
+            <TextBox Height="30" Margin="11,16,155,0" Name="textBox1" VerticalAlignment="Top">
+                <TextBox.Template>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="8"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ScrollViewer x:Name="PART_ContentHost" />
+                        </Border>
+                    </ControlTemplate>
+                </TextBox.Template>
+            </TextBox>
+            <Button HorizontalAlignment="Right" Margin="0,14,26,0"
+                    Name="button1" VerticalAlignment="Top"
+                    Height="30" Width="120"
+                    FontFamily="Verdana" FontSize="14" FontWeight="Normal"
+                    Foreground="White" Background="#E7F2EF"
+                    BorderBrush="Black"
+                    Click="BrowseButton_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="8"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                Browse
+            </Button>
+            <Button HorizontalAlignment="Right" Margin="0,0,30,39" Name="button2"
+                    VerticalAlignment="Bottom"
+                    Height="30" Width="120"
+                    FontFamily="Verdana" FontSize="14" FontWeight="Normal"
+                    Foreground="White" Background="#E7F2EF"
+                    BorderBrush="Black"
+                    Click="AddAnotherFileButton_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="8"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                Add Another File
+            </Button>
+            <Button Margin="129,0,156,39" Name="button3" VerticalAlignment="Bottom"
+                    Height="30" FontFamily="Verdana" FontSize="14" FontWeight="Normal"
+                    Foreground="Black" Background="#E7F2EF"
+                    BorderBrush="Black"
+                    Click="DisplayFile_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="8"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                Display File
+            </Button>
+            <!-- Keep the FileInfoText for displaying file information -->
+            <TextBlock x:Name="FileInfoText" VerticalAlignment="Bottom" HorizontalAlignment="Left" 
+                       Margin="12,0,0,12" FontSize="10" Foreground="DarkBlue"/>
+        </Grid>
 
         <ListBox x:Name="PagesListBox"
+                 Background="White"
                  VirtualizingStackPanel.IsVirtualizing="True"
                  VirtualizingStackPanel.VirtualizationMode="Recycling"
                  ScrollViewer.IsDeferredScrollingEnabled="True"
                  ScrollViewer.CanContentScroll="True">
             <ListBox.ItemTemplate>
                 <DataTemplate DataType="{x:Type local:PageViewModel}">
-                    <Border Padding="6" Margin="2" BorderBrush="LightGray" BorderThickness="1">
+                    <Border Padding="6" Margin="2" BorderBrush="LightGray" BorderThickness="1" Background="White">
                         <StackPanel>
-                            <TextBlock Text="{Binding DisplayHeader}" FontWeight="Bold"/>
-                            <TextBlock Text="{Binding TextPreview}" TextWrapping="Wrap" MaxHeight="200"/>
+                            <TextBlock Text="{Binding DisplayHeader}" FontWeight="Bold" Foreground="Black"/>
+                            <TextBlock Text="{Binding TextPreview}" TextWrapping="Wrap" MaxHeight="200" Foreground="Black"/>
                             <Expander Header="Hex (expand to show)" IsExpanded="False">
-                                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Height="300">
-                                    <TextBlock Text="{Binding HexDump}" FontFamily="Consolas" FontSize="12" TextWrapping="NoWrap"/>
+                                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Height="300" Background="White">
+                                    <TextBlock Text="{Binding HexDump}" FontFamily="Consolas" FontSize="12" TextWrapping="NoWrap" Foreground="Black"/>
                                 </ScrollViewer>
                             </Expander>
                         </StackPanel>

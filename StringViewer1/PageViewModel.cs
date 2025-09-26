@@ -15,9 +15,9 @@ namespace StringViewer1
 
         public long PageIndex => _pageIndex;
         public long Offset => _pageIndex * (long)_provider.PageSize;
-        public string? HexDump { get; private set; }
-        public string? TextPreview { get; private set; }
-        public string DisplayHeader => $"Page {_pageIndex} (offset 0x{Offset:X})";
+        public string DisplayHeader { get; set; }
+        public string TextPreview { get; set; }
+        public string HexDump { get; set; }
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -25,6 +25,9 @@ namespace StringViewer1
         {
             _provider = provider;
             _pageIndex = pageIndex;
+            DisplayHeader = $"Page {_pageIndex} (offset 0x{Offset:X})";
+            TextPreview = string.Empty;
+            HexDump = string.Empty;
         }
 
         public async void EnsureLoadedAsync()
