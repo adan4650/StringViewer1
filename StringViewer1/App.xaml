@@ -21,12 +21,19 @@
                 <Setter Property="Foreground" Value="Black"/>
             </Style>
             
-            <!-- Global ListBox Styling for selected files box -->
-            <Style TargetType="ListBox">
+            <!-- Specific styling for file selection ListBox -->
+            <Style x:Key="FileSelectionListBoxStyle" TargetType="ListBox">
                 <Setter Property="Background" Value="#708993"/>
                 <Setter Property="BorderBrush" Value="White"/>
                 <Setter Property="BorderThickness" Value="1"/>
                 <Setter Property="Foreground" Value="Black"/>
+            </Style>
+
+            <!-- Global ListBox Styling (without Foreground) -->
+            <Style TargetType="ListBox">
+                <Setter Property="Background" Value="#708993"/>
+                <Setter Property="BorderBrush" Value="White"/>
+                <Setter Property="BorderThickness" Value="1"/>
             </Style>
             
             <!-- Global TextBlock Styling -->
@@ -34,11 +41,19 @@
                 <Setter Property="Foreground" Value="Black"/>
             </Style>
             
-            <!-- Global ScrollBar Styling -->
+            <!-- Global ScrollBar Styling - Fixed -->
             <Style TargetType="ScrollBar">
                 <Setter Property="Background" Value="#F0F0F0"/>
                 <Setter Property="BorderBrush" Value="#E0E0E0"/>
-                <Setter Property="Width" Value="12"/>
+                <!-- Removed problematic Width setter -->
+                <Style.Triggers>
+                    <Trigger Property="Orientation" Value="Vertical">
+                        <Setter Property="Width" Value="12"/>
+                    </Trigger>
+                    <Trigger Property="Orientation" Value="Horizontal">
+                        <Setter Property="Height" Value="12"/>
+                    </Trigger>
+                </Style.Triggers>
             </Style>
             
             <!-- Global ScrollViewer Styling -->

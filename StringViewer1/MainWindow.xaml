@@ -6,27 +6,6 @@
     <DockPanel>
         <!-- Replace the simple StackPanel with the new Grid interface -->
         <Grid Height="336" DockPanel.Dock="Top" Margin="6">
-            <ScrollViewer Margin="12,152,26,83" Name="scrollViewer1"
-                          Background="Gray" 
-                          VerticalScrollBarVisibility="Auto"
-                          HorizontalScrollBarVisibility="Auto">
-                <ScrollViewer.Template>
-                    <ControlTemplate TargetType="ScrollViewer">
-                        <Border Background="{TemplateBinding Background}" 
-                                CornerRadius="8"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}">
-                            <ScrollContentPresenter />
-                        </Border>
-                    </ControlTemplate>
-                </ScrollViewer.Template>
-                <TextBlock Name="textBlock1"
-                           Foreground="White"
-                           FontFamily="Georgia" FontSize="12"
-                           TextWrapping="Wrap"
-                           Padding="5"
-                           Text="Selected files will appear here..." />
-            </ScrollViewer>
             <TextBox Height="30" Margin="11,16,155,0" Name="textBox1" VerticalAlignment="Top">
                 <TextBox.Template>
                     <ControlTemplate TargetType="TextBox">
@@ -39,6 +18,17 @@
                     </ControlTemplate>
                 </TextBox.Template>
             </TextBox>
+            
+            <!-- File Selection ListBox -->
+            <ListBox x:Name="FileSelectionListBox" 
+                     Height="100" 
+                     Margin="12,50,26,0" 
+                     VerticalAlignment="Top"
+                     Background="#708993"
+                     BorderBrush="White"
+                     BorderThickness="1"
+                     Foreground="Black"/>
+            
             <Button HorizontalAlignment="Right" Margin="0,14,26,0"
                     Name="button1" VerticalAlignment="Top"
                     Height="30" Width="120"
@@ -58,8 +48,48 @@
                 </Button.Template>
                 Browse
             </Button>
-            <Button HorizontalAlignment="Right" Margin="0,0,30,39" Name="button2"
-                    VerticalAlignment="Bottom"
+            
+            <!-- Buttons positioned right below the FileSelectionListBox (at y=160) -->
+            <Button HorizontalAlignment="Left" Margin="12,160,0,0" Name="button4"
+                    VerticalAlignment="Top"
+                    Height="30" Width="110"
+                    FontFamily="Verdana" FontSize="14" FontWeight="Normal"
+                    Foreground="White" Background="#F44336"
+                    BorderBrush="Black"
+                    Click="RemoveFileButton_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="8"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                Remove File
+            </Button>
+            
+            <Button Margin="129,160,156,0" Name="button3" VerticalAlignment="Top"
+                    Height="30" FontFamily="Verdana" FontSize="14" FontWeight="Normal"
+                    Foreground="Black" Background="#E7F2EF"
+                    BorderBrush="Black"
+                    Click="DisplayFile_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="8"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                Display File
+            </Button>
+            
+            <Button HorizontalAlignment="Right" Margin="0,160,26,0" Name="button2"
+                    VerticalAlignment="Top"
                     Height="30" Width="120"
                     FontFamily="Verdana" FontSize="14" FontWeight="Normal"
                     Foreground="White" Background="#E7F2EF"
@@ -77,23 +107,16 @@
                 </Button.Template>
                 Add Another File
             </Button>
-            <Button Margin="129,0,156,39" Name="button3" VerticalAlignment="Bottom"
-                    Height="30" FontFamily="Verdana" FontSize="14" FontWeight="Normal"
-                    Foreground="Black" Background="#E7F2EF"
-                    BorderBrush="Black"
-                    Click="DisplayFile_Click">
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" 
-                                CornerRadius="8"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-                Display File
-            </Button>
+            
+            <!-- Progress Bar positioned below the buttons (at y=200) -->
+            <ProgressBar x:Name="LoadingProgressBar" 
+                         Height="20" 
+                         Margin="12,200,26,0" 
+                         VerticalAlignment="Top"
+                         Visibility="Collapsed"
+                         Foreground="#4CAF50"
+                         Background="#E0E0E0"/>
+            
             <!-- Keep the FileInfoText for displaying file information -->
             <TextBlock x:Name="FileInfoText" VerticalAlignment="Bottom" HorizontalAlignment="Left" 
                        Margin="12,0,0,12" FontSize="10" Foreground="DarkBlue"/>
